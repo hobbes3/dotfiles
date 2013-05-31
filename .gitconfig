@@ -10,6 +10,8 @@
 	excludesfile = /Users/hobbes3/.gitignore_global
 [diff]
     tool = default-difftool
+[merge]
+    tool = default-difftool
 [difftool "default-difftool"]
     cmd = default-difftool.sh $LOCAL $REMOTE
 [difftool]

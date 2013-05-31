@@ -21,8 +21,6 @@
     Bundle 'mileszs/ack.vim'
     " Show and improves marks.
     Bundle 'kshenoy/vim-signature'
-    " Jump to any word with character overlays.
-    Bundle 'Lokaltog/vim-easymotion'
     " All the color schemes you'll ever need.
     Bundle 'flazz/vim-colorschemes'
     " View the undo-redo as an ASCII-view tree.
@@ -61,10 +59,11 @@
     \    'step_out': '<S-F11>',
     \    'get_context': '<F12>',
     \    'eval_under_cursor': "<Leader>'",
+    \    'eval_visual': '<Leader>;',
     \}
 
     " <Leader>e is evaulating under the visual cursor for Vdebug.
-    vmap <Leader>; <Leader>e
+    "vmap <Leader>; <Leader>e
 
 "" ack.vim ""
     nnoremap <leader>p :Ack<Space>
@@ -93,11 +92,13 @@
 "" ctrlp ""
     " Remap the default <c-p>.
     let g:ctrlp_map = '<Leader>]'
+    let g:ctrlp_max_height = 20
+    let g:ctrlp_show_hidden = 1
 
     " Ignore files and folders.
     let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.(git|hg|svn)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
-    \ 'file': '\v\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart)$',
+    \ 'dir':  '\v[\/](\.(git|hg|svn|Trash)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
+    \ 'file': '\v(tags|\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart|ipa))$',
     \ 'link': '\v\.__INCLUDE_VERSION__$',
     \}
 
@@ -106,17 +107,10 @@
     let g:NERDTreeWinSize = 60
 
 "" Gundo ""
-    nnoremap <Leader>+ :GundoToggle<CR>
+    nnoremap <Leader>= :GundoToggle<CR>
     let g:gundo_width = 80
     let g:gundo_preview_height = 40
-    " NERDtree is on the left.
-    let g:gundo_right = 1
-
-"" Gundo ""
-    nnoremap <Leader>u :GundoToggle<CR>
-    let g:gundo_width = 80
-    let g:gundo_preview_height = 40
-    " NERDtree is on the left.
+    " NERDtree is already on the left.
     let g:gundo_right = 1
 
 " Show syntax coloring if it can.
@@ -148,6 +142,9 @@ cnoremap %s/ %s/\v
 
 " Keep X lines when scrolling.
 set scrolloff=7
+
+" Don't wrap text, which you might need to scroll horizontally.
+set nowrap
 
 " Set visual bell
 set vb

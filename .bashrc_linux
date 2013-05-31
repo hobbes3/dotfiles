@@ -2,10 +2,9 @@ PS1='\[\e[0;32m\]\u\[\e[m\]@\[\e[0;32m\]\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1
 
 alias ls='ls -Fph --color=auto'
 alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 export PATH=/usr/local/bin:$PATH
 
-# VI mode for bash
+# Vi mode for bash.
 set -o vi
