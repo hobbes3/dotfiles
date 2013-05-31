@@ -13,6 +13,7 @@
 
     " My bundles.
     Bundle 'kien/ctrlp.vim'
+    Bundle 'scrooloose/nerdtree'
     Bundle 'joonty/vdebug.git'
     Bundle 'mileszs/ack.vim'
     Bundle 'kshenoy/vim-signature'
@@ -47,14 +48,14 @@
     \    'step_into': '<F11>',
     \    'step_out': '<S-F11>',
     \    'get_context': '<F12>',
-    \    'eval_under_cursor': '<Leader>]',
+    \    'eval_under_cursor': "<Leader>'",
     \}
 
     " <Leader>e is evaulating under the visual cursor for Vdebug.
-    vmap <Leader>[ <Leader>e
+    vmap <Leader>; <Leader>e
 
 "" ack.vim ""
-    nnoremap <leader>' :Ack<Space>
+    nnoremap <leader>p :Ack<Space>
 
 "" Powerline ""
     let g:Powerline_symbols = 'fancy'
@@ -79,7 +80,7 @@
 
 "" ctrlp ""
     " Remap the default <c-p>.
-    let g:ctrlp_map = '<Leader>i'
+    let g:ctrlp_map = '<Leader>]'
 
     " Ignore files and folders.
     let g:ctrlp_custom_ignore = {
@@ -87,6 +88,9 @@
     \ 'file': '\v\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart)$',
     \ 'link': '\v\.__INCLUDE_VERSION__$',
     \}
+
+"" NERDtree ""
+    map <Leader>[ :NERDTreeToggle<CR>
 
 " Show syntax coloring if it can.
 if has("syntax")
