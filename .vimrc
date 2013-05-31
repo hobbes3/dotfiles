@@ -112,6 +112,13 @@
     " NERDtree is on the left.
     let g:gundo_right = 1
 
+"" Gundo ""
+    nnoremap <Leader>u :GundoToggle<CR>
+    let g:gundo_width = 80
+    let g:gundo_preview_height = 40
+    " NERDtree is on the left.
+    let g:gundo_right = 1
+
 " Show syntax coloring if it can.
 if has("syntax")
     syntax on
