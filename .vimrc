@@ -11,13 +11,25 @@
     call vundle#rc()
     Bundle 'gmarik/vundle'
 
-    " My bundles.
+    " Fuzzy search filenames.
     Bundle 'kien/ctrlp.vim'
+    " Show a better file explorer.
     Bundle 'scrooloose/nerdtree'
+    " Xdebug.
     Bundle 'joonty/vdebug.git'
+    " Ack.
     Bundle 'mileszs/ack.vim'
+    " Show and improves marks.
     Bundle 'kshenoy/vim-signature'
+    " Jump to any word with character overlays.
+    Bundle 'Lokaltog/vim-easymotion'
+    " All the color schemes you'll ever need.
     Bundle 'flazz/vim-colorschemes'
+    " View the undo-redo as an ASCII-view tree.
+    Bundle 'sjl/gundo.vim'
+    " A much more powerful match % command.
+    Bundle 'tsaleh/vim-matchit'
+    " An awesome status bar.
     Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
     " Required
@@ -91,6 +103,14 @@
 
 "" NERDtree ""
     map <Leader>[ :NERDTreeToggle<CR>
+    let g:NERDTreeWinSize = 60
+
+"" Gundo ""
+    nnoremap <Leader>+ :GundoToggle<CR>
+    let g:gundo_width = 80
+    let g:gundo_preview_height = 40
+    " NERDtree is on the left.
+    let g:gundo_right = 1
 
 " Show syntax coloring if it can.
 if has("syntax")
