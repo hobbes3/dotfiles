@@ -1,8 +1,8 @@
 " Satoshi's .vimrc "
 """"""""""""""""""""
 
-"" Vundle required configuration ""
-    " Required - Don't emulate VI's original bugs and limitations.
+"""" Vundle """"
+    " Required. Don't emulate VI's original bugs and limitations.
     set nocompatible
 
     " Required.
@@ -13,105 +13,102 @@
 
     " Fuzzy search filenames.
     Bundle 'kien/ctrlp.vim'
+        " Remap the default <c-p>.
+        let g:ctrlp_map = '<Leader>]'
+        let g:ctrlp_max_height = 20
+        let g:ctrlp_show_hidden = 1
+
+        " Ignore files and folders.
+        let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\v[\/](\.(git|hg|svn|Trash)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
+        \ 'file': '\v(tags|\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart|ipa))$',
+        \ 'link': '\v\.__INCLUDE_VERSION__$',
+        \}
+
     " Show a better file explorer.
     Bundle 'scrooloose/nerdtree'
+        map <Leader>[ :NERDTreeToggle<CR>
+        let g:NERDTreeWinSize = 60
+
     " Xdebug.
     Bundle 'joonty/vdebug.git'
+        let g:vdebug_options = {
+        \   'path_maps': {
+        \       '/var/www/vhosts': '/Users/hobbes3/mounts/nead/var/www/vhosts',
+        \   },
+        \   'server': '0.0.0.0',
+        \   'timeout': 5
+        \}
+
+        let g:vdebug_features = {
+        \   'max_depth': 99999,
+        \   'max_children': 99999,
+        \   'max_data': 99999
+        \}
+
+        let g:vdebug_keymap = {
+        \    'set_breakpoint': '<F5>',
+        \    'close': '<F6>',
+        \    'detach': '<F7>',
+        \    'run': '<F8>',
+        \    'run_to_cursor': '<F9>',
+        \    'step_over': '<F10>',
+        \    'step_into': '<F11>',
+        \    'step_out': '<S-F11>',
+        \    'get_context': '<F12>',
+        \    'eval_under_cursor': "<Leader>'",
+        \    'eval_visual': '<Leader>;',
+        \}
+
     " Ack.
     Bundle 'mileszs/ack.vim'
+        nnoremap <leader>p :Ack<Space>
+
     " Show and improves marks.
     Bundle 'kshenoy/vim-signature'
+
     " All the color schemes you'll ever need.
     Bundle 'flazz/vim-colorschemes'
+
     " View the undo-redo as an ASCII-view tree.
     Bundle 'sjl/gundo.vim'
+        nnoremap <Leader>= :GundoToggle<CR>
+        let g:gundo_width = 80
+        let g:gundo_preview_height = 40
+        " NERDtree is already on the left.
+        let g:gundo_right = 1
+
     " A much more powerful match % command.
     Bundle 'tsaleh/vim-matchit'
+
+    " Source code browser plugin.
+    Bundle 'vim-scripts/taglist.vim'
+        map <Leader>- :TlistToggle<CR>
+
     " An awesome status bar.
     Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+        let g:Powerline_symbols = 'fancy'
+
+        " Hide the default mode text (e.g. -- INSERT -- below the status line).
+        set noshowmode
+
+        if !has("gui_running")
+            if has("autocmd")
+                " For terminal Vim, remove the 1 sec delay on updating the status after exiting insert mode.
+                set ttimeoutlen=10
+                augroup FastEscape
+                    autocmd!
+                    au InsertEnter * set timeoutlen=0
+                    au InsertLeave * set timeoutlen=1000
+                augroup END
+            endif
+        else
+            " If it's graphical Vim, then use the custom fonts to properly display Powerline status.
+            set guifont=Menlo\ for\ Powerline:h12
+        endif
 
     " Required
     filetype plugin indent on
-
-"" Vdebug ""
-    let g:vdebug_options = {
-    \   'path_maps': {
-    \       '/var/www/vhost': '/Users/hobbes3/mounts/nead/var/www/vhost',
-    \   },
-    \   'server': '0.0.0.0',
-    \   'timeout': 5
-    \}
-
-    let g:vdebug_features = {
-    \   'max_depth': 99999,
-    \   'max_children': 99999,
-    \   'max_data': 99999
-    \}
-
-    let g:vdebug_keymap = {
-    \    'set_breakpoint': '<F5>',
-    \    'close': '<F6>',
-    \    'detach': '<F7>',
-    \    'run': '<F8>',
-    \    'run_to_cursor': '<F9>',
-    \    'step_over': '<F10>',
-    \    'step_into': '<F11>',
-    \    'step_out': '<S-F11>',
-    \    'get_context': '<F12>',
-    \    'eval_under_cursor': "<Leader>'",
-    \    'eval_visual': '<Leader>;',
-    \}
-
-    " <Leader>e is evaulating under the visual cursor for Vdebug.
-    "vmap <Leader>; <Leader>e
-
-"" ack.vim ""
-    nnoremap <leader>p :Ack<Space>
-
-"" Powerline ""
-    let g:Powerline_symbols = 'fancy'
-
-    " Hide the default mode text (e.g. -- INSERT -- below the status line).
-    set noshowmode
-
-    if !has("gui_running")
-        if has("autocmd")
-            " For terminal Vim, remove the 1 sec delay on updating the status after exiting insert mode.
-            set ttimeoutlen=10
-            augroup FastEscape
-                autocmd!
-                au InsertEnter * set timeoutlen=0
-                au InsertLeave * set timeoutlen=1000
-            augroup END
-        endif
-    else
-        " If it's graphical Vim, then use the custom fonts to properly display Powerline status.
-        set guifont=Menlo\ for\ Powerline:h12
-    endif
-
-"" ctrlp ""
-    " Remap the default <c-p>.
-    let g:ctrlp_map = '<Leader>]'
-    let g:ctrlp_max_height = 20
-    let g:ctrlp_show_hidden = 1
-
-    " Ignore files and folders.
-    let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.(git|hg|svn|Trash)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
-    \ 'file': '\v(tags|\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart|ipa))$',
-    \ 'link': '\v\.__INCLUDE_VERSION__$',
-    \}
-
-"" NERDtree ""
-    map <Leader>[ :NERDTreeToggle<CR>
-    let g:NERDTreeWinSize = 60
-
-"" Gundo ""
-    nnoremap <Leader>= :GundoToggle<CR>
-    let g:gundo_width = 80
-    let g:gundo_preview_height = 40
-    " NERDtree is already on the left.
-    let g:gundo_right = 1
 
 " Show syntax coloring if it can.
 if has("syntax")
@@ -119,13 +116,13 @@ if has("syntax")
 endif
 
 if !has("gui_running")
-    " Remember undo after quitting.
+    " Hides the buffer instead of closing it. It also remembers undos and marks.
     set hidden
 
-    " Set the color theme for Terminal which doesn't support 256-colors.
+    " Set the color scheme for Terminal which doesn't support 256-colors.
     colorscheme jellybeans
 else
-    " Set
+    " A nice color scheme for gVim.
     colorscheme solarized
 endif
 
