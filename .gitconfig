@@ -1,0 +1,16 @@
+[color]
+    ui = auto
+[github]
+	token = be1582dc7c48d9a92fe60e0bd35b1031
+	user = hobbes3
+[user]
+	name = hobbes3
+	email = hobbes3@gmail.com
+[core]
+	excludesfile = /Users/hobbes3/.gitignore_global
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = default-difftool.sh $LOCAL $REMOTE
+[difftool]
+    prompt = false
