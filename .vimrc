@@ -5,20 +5,14 @@
     " Required - Don't emulate VI's original bugs and limitations.
     set nocompatible
 
-    " Required
+    " Required.
     filetype off
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
-
-    " Required
     Bundle 'gmarik/vundle'
 
-    Bundle 'vim-peepopen'
-    Bundle 'vim-scripts/L9'
-    Bundle 'vim-scripts/FuzzyFinder'
-    Bundle 'wincent/Command-T'
+    " My bundles.
     Bundle 'kien/ctrlp.vim'
-
     Bundle 'joonty/vdebug.git'
     Bundle 'mileszs/ack.vim'
     Bundle 'kshenoy/vim-signature'
@@ -65,7 +59,7 @@
 "" Powerline ""
     let g:Powerline_symbols = 'fancy'
 
-    " Hide the default mode text (e.g. -- INSERT -- below the status line)
+    " Hide the default mode text (e.g. -- INSERT -- below the status line).
     set noshowmode
 
     if !has("gui_running")
@@ -90,11 +84,11 @@
     " Ignore files and folders.
     let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/](\.(git|hg|svn)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
-    \ 'file': '\v\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|zip|gz|so|shx|shp|wmf||bmp|ico|exe|avi|docx?|xlsx?|pptx?|upart)$',
+    \ 'file': '\v\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart)$',
     \ 'link': '\v\.__INCLUDE_VERSION__$',
     \}
 
-" Show syntax coloring, if it can.
+" Show syntax coloring if it can.
 if has("syntax")
     syntax on
 endif
@@ -111,7 +105,7 @@ else
 endif
 
 " Files to ignore. Useful during tab-completion of files.
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*
 
 " Search for the tags file recursively upward.
 set tags=./tags;
