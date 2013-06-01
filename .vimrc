@@ -109,6 +109,8 @@
 
     " Required
     filetype plugin indent on
+"""" End of Vundle """"
+
 
 " Show syntax coloring if it can.
 if has("syntax")
@@ -118,13 +120,11 @@ endif
 if !has("gui_running")
     " Hides the buffer instead of closing it. It also remembers undos and marks.
     set hidden
-
-    " Set the color scheme for Terminal which doesn't support 256-colors.
-    colorscheme jellybeans
-else
-    " A nice color scheme for gVim.
-    colorscheme solarized
 endif
+
+" Set a dark background for solarized color scheme.
+set background=dark
+colorscheme solarized
 
 " Files to ignore. Useful during tab-completion of files.
 set wildignore+=*/tmp/*
@@ -196,9 +196,6 @@ set backspace=indent,eol,start
 
 " Arrow keys, bs, space wrap to next/prev line.
 set whichwrap=b,s,<,>,[,]
-
-" Set a dark background.
-set background=dark
 
 " Allow Vim to use system clipboard.
 set clipboard=autoselect
