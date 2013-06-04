@@ -18,6 +18,10 @@
         let g:ctrlp_max_height = 20
         let g:ctrlp_show_hidden = 1
 
+        let g:ctrlp_prompt_mappings = {
+        \   'PrtClearCache()': ['<S-F5>'],
+        \}
+
         " Ignore files and folders.
         let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/](\.(git|hg|svn|Trash)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
@@ -106,6 +110,8 @@
             " If it's graphical Vim, then use the custom fonts to properly display Powerline status.
             set guifont=Menlo\ for\ Powerline:h12
         endif
+
+    Bundle 'Valloric/YouCompleteMe'
 
     " Required
     filetype plugin indent on
