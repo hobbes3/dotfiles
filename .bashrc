@@ -27,7 +27,7 @@ source /usr/local/share/python/virtualenvwrapper.sh
 export SVN_EDITOR=vim
 
 # Vi mode for bash.
-set -o vi
+#set -o vi
 
 # Brew Autocompletes.
 if [ -f $(brew --prefix)/etc/bash_completion ]; then

@@ -17,9 +17,43 @@
         let g:ctrlp_map = '<Leader>]'
         let g:ctrlp_max_height = 20
         let g:ctrlp_show_hidden = 1
+        let g:ctrlp_working_path_mode = ''
 
         let g:ctrlp_prompt_mappings = {
-        \   'PrtClearCache()': ['<S-F5>'],
+        \ 'PrtBS()':              ['<bs>', '<c-]>'],
+        \ 'PrtDelete()':          ['<del>'],
+        \ 'PrtDeleteWord()':      ['<c-w>'],
+        \ 'PrtClear()':           ['<c-u>'],
+        \ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
+        \ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
+        \ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
+        \ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
+        \ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
+        \ 'PrtSelectMove("d")':   ['<PageDown>', '<kPageDown>'],
+        \ 'PrtHistory(-1)':       ['<c-n>'],
+        \ 'PrtHistory(1)':        ['<c-p>'],
+        \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
+        \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
+        \ 'AcceptSelection("t")': ['<c-t>'],
+        \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
+        \ 'ToggleFocus()':        ['<s-tab>'],
+        \ 'ToggleRegex()':        ['<c-r>'],
+        \ 'ToggleByFname()':      ['<c-d>'],
+        \ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
+        \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
+        \ 'PrtExpandDir()':       ['<tab>'],
+        \ 'PrtInsert("c")':       ['<MiddleMouse>', '<insert>'],
+        \ 'PrtInsert()':          ['<c-\>'],
+        \ 'PrtCurStart()':        ['<c-a>'],
+        \ 'PrtCurEnd()':          ['<c-e>'],
+        \ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
+        \ 'PrtCurRight()':        ['<c-l>', '<right>'],
+        \ 'PrtClearCache()':      ['<S-F5>'], " Default is <F5>
+        \ 'PrtDeleteEnt()':       ['<F7>'],
+        \ 'CreateNewFile()':      ['<c-y>'],
+        \ 'MarkToOpen()':         ['<c-z>'],
+        \ 'OpenMulti()':          ['<c-o>'],
+        \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
         \}
 
         " Ignore files and folders.
@@ -41,13 +75,13 @@
         \       '/var/www/vhosts': '/Users/hobbes3/mounts/nead/var/www/vhosts',
         \   },
         \   'server': '0.0.0.0',
-        \   'timeout': 5
+        \   'timeout': 5,
         \}
 
         let g:vdebug_features = {
         \   'max_depth': 99999,
         \   'max_children': 99999,
-        \   'max_data': 99999
+        \   'max_data': 99999,
         \}
 
         let g:vdebug_keymap = {
