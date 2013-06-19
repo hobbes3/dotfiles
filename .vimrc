@@ -18,6 +18,8 @@
         let g:ctrlp_max_height = 20
         let g:ctrlp_show_hidden = 1
         let g:ctrlp_working_path_mode = ''
+        let g:ctrlp_lazy_update = 150
+        let g:ctrlp_clear_cache_on_exit = 0
 
         let g:ctrlp_prompt_mappings = {
         \ 'PrtBS()':              ['<bs>', '<c-]>'],
@@ -48,7 +50,7 @@
         \ 'PrtCurEnd()':          ['<c-e>'],
         \ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
         \ 'PrtCurRight()':        ['<c-l>', '<right>'],
-        \ 'PrtClearCache()':      ['<S-F5>'], " Default is <F5>
+        \ 'PrtClearCache()':      ['<S-F5>'],
         \ 'PrtDeleteEnt()':       ['<F7>'],
         \ 'CreateNewFile()':      ['<c-y>'],
         \ 'MarkToOpen()':         ['<c-z>'],
@@ -58,7 +60,7 @@
 
         " Ignore files and folders.
         let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/](\.(git|hg|svn|Trash)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
+        \ 'dir':  '\v[\/](\.(git|hg|svn|Trash|vim)|Applications|Downloads|Games|Library|Movies|Music|Pictures|pytz\/zoneinfo)$',
         \ 'file': '\v(tags|\.(exe|so|dll|wav|mp3|mo|DS_Store|svn|png|jpe?g|jpg\.mno|gif|elc|rbc|pyc|swp|psd|ai|pdf|mov|aep|dmg|tar|zip|gz|shx|shp|wmf||bmp|ico|avi|docx?|xlsx?|pptx?|upart|ipa))$',
         \ 'link': '\v\.__INCLUDE_VERSION__$',
         \}
