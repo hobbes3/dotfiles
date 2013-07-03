@@ -14,8 +14,8 @@ alias sshfs='sshfs -oauto_cache,reconnect'
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
-export PATH=/usr/local/share/python:$PATH
-export PATH=$PATH:$HOME/.rvm/bin
+export PATH=/usr/local/share/npm/bin:$PATH
+export PATH=$HOME/.rvm/bin:$PATH
 
 # Erase duplicates across whole history.
 #export HISTCONTROL=erasedups

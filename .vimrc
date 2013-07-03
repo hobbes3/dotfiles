@@ -17,6 +17,7 @@
         let g:ctrlp_map = '<Leader>]'
         let g:ctrlp_max_height = 20
         let g:ctrlp_show_hidden = 1
+        let g:ctrlp_open_new_file = 'v'
         let g:ctrlp_working_path_mode = ''
         let g:ctrlp_lazy_update = 150
         let g:ctrlp_clear_cache_on_exit = 0
@@ -37,14 +38,14 @@
         \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
         \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
         \ 'AcceptSelection("t")': ['<c-t>'],
-        \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
+        \ 'AcceptSelection("v")': ['<RightMouse>'],
         \ 'ToggleFocus()':        ['<s-tab>'],
         \ 'ToggleRegex()':        ['<c-r>'],
         \ 'ToggleByFname()':      ['<c-d>'],
         \ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
         \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
         \ 'PrtExpandDir()':       ['<tab>'],
-        \ 'PrtInsert("c")':       ['<MiddleMouse>', '<insert>'],
+        \ 'PrtInsert("c")':       ['<MiddleMouse>', '<insert>', '<c-v>'],
         \ 'PrtInsert()':          ['<c-\>'],
         \ 'PrtCurStart()':        ['<c-a>'],
         \ 'PrtCurEnd()':          ['<c-e>'],
@@ -74,7 +75,8 @@
     Bundle 'joonty/vdebug.git'
         let g:vdebug_options = {
         \   'path_maps': {
-        \       '/var/www/vhosts': '/Users/hobbes3/mounts/nead/var/www/vhosts',
+        \       '/var/www/vhosts/ises.satoshi.neadwerx.com': '/Users/hobbes3/mounts/nead/var/www/vhosts/ises.satoshi.neadwerx.com',
+        \       '/var/www/vhosts/ises.kevin.neadwerx.com': '/Users/hobbes3/mounts/nead_kevin/var/www/vhosts/ises.kevin.neadwerx.com',
         \   },
         \   'server': '0.0.0.0',
         \   'timeout': 5,
@@ -105,7 +107,24 @@
         nnoremap <leader>p :Ack<Space>
 
     " Show and improves marks.
-    Bundle 'kshenoy/vim-signature'
+    "Bundle 'kshenoy/vim-signature'
+        " m[a-zA-Z]    : Toggle mark
+        " m<Space>     : Delete all marks
+        " m,           : Place the next available mark
+        " ]`           : Jump to next mark
+        " [`           : Jump to prev mark
+        " ]'           : Jump to start of next line containing a mark
+        " ['           : Jump to start of prev line containing a mark
+        " `]           : Jump by alphabetical order to next mark
+        " `[           : Jump by alphabetical order to prev mark
+        " ']           : Jump by alphabetical order to start of next line containing a mark
+        " '[           : Jump by alphabetical order to start of prev line containing a mark
+        "
+        " m[0-9]       : Toggle the corresponding marker !@#$%^&*()
+        " m<S-[0-9]>   : Remove all markers of the same type
+        " ]-           : Jump to next line having same marker
+        " [-           : Jump to prev line having same marker
+        " m<BackSpace> : Remove all markers
 
     " All the color schemes you'll ever need.
     Bundle 'flazz/vim-colorschemes'
@@ -147,7 +166,19 @@
             set guifont=Menlo\ for\ Powerline:h12
         endif
 
+    " Smarter autocomplete and autocomplete for built-in functions.
     Bundle 'Valloric/YouCompleteMe'
+
+    " Syntax and style checker for many languages.
+    Bundle 'scrooloose/syntastic'
+        let g:syntastic_check_on_open=1
+        let g:syntastic_enable_signs=1
+        let g:syntastic_php_checkers=['php', 'phpmd']
+        let g:syntastic_javascript_checkers=['jshint']
+        let g:syntastic_auto_jump=0
+
+    " Align text based on characters.
+    Bundle 'godlygeek/tabular'
 
     " Required
     filetype plugin indent on
@@ -162,6 +193,21 @@ endif
 if !has("gui_running")
     " Hides the buffer instead of closing it. It also remembers undos and marks.
     set hidden
+endif
+
+if has("autocmd")
+    " Restore cursor position.
+    au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+    " Automatically save foldings.
+    au BufWinLeave * silent! mkview
+    au BufWinEnter * silent! loadview
+
+    " No line numbers when viewing help.
+    au FileType helpfile set nonumber
+
+    " Remove all trailing whitespace when saving.
+    au BufWritePre * :%s/\s\+$//e
 endif
 
 " Set a dark background for solarized color scheme.
@@ -253,35 +299,3 @@ set ignorecase smartcase
     let php_sql_query=1
     " HTML syntax highlighting inside strings.
     let php_htmlInStrings=1
-
-" Set the status line (no longer used because of Powerline).
-"set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
-"              | | | | |  |   |      |  |     |    |
-"              | | | | |  |   |      |  |     |    + current
-"              | | | | |  |   |      |  |     |       column
-"              | | | | |  |   |      |  |     +-- current line
-"              | | | | |  |   |      |  +-- current % into file
-"              | | | | |  |   |      +-- current syntax in
-"              | | | | |  |   |          square brackets
-"              | | | | |  |   +-- current fileformat
-"              | | | | |  +-- number of lines
-"              | | | | +-- preview flag in square brackets
-"              | | | +-- help flag in square brackets
-"              | | +-- readonly flag in square brackets
-"              | +-- modified flag in square brackets
-"              +-- full path to file in the buffer
-
-if has("autocmd")
-    " Restore cursor position.
-    au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-
-    " Automatically save foldings.
-    au BufWinLeave * silent! mkview
-    au BufWinEnter * silent! loadview
-
-    " No line numbers when viewing help.
-    au FileType helpfile set nonumber
-
-    " Remove all trailing whitespace when saving.
-    au BufWritePre * :%s/\s\+$//e
-endif
