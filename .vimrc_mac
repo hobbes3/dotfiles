@@ -214,11 +214,11 @@ endif
 set background=dark
 colorscheme solarized
 
-" Files to ignore. Useful during tab-completion of files.
-set wildignore+=*/tmp/*
-
 " Search for the tags file recursively upward.
 set tags=./tags;
+
+" Files to ignore. Useful during tab-completion of files.
+set wildignore+=*/tmp/*
 
 " Set "very magic" on all regex searches.
 nnoremap   /   /\v
@@ -293,9 +293,3 @@ set noswapfile
 
 " Case insensitive for all lowercase searches.
 set ignorecase smartcase
-
-"" PHP ""
-    " SQL syntax highlighting inside strings.
-    let php_sql_query=1
-    " HTML syntax highlighting inside strings.
-    let php_htmlInStrings=1
