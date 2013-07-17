@@ -7,9 +7,6 @@ alias egrep='egrep --color=auto'
 # Quick look.
 alias qlf='qlmanage -p "$@" >& /dev/null'
 
-# Django.
-alias rs='workon doors; python ~/Scripts/mysite/manage.py runserver_plus'
-
 alias sshfs='sshfs -oauto_cache,reconnect'
 
 export PATH=/usr/local/bin:$PATH
@@ -20,14 +17,15 @@ export PATH=$HOME/.rvm/bin:$PATH
 # Erase duplicates across whole history.
 #export HISTCONTROL=erasedups
 
+# For virtualenvwrapper (Python)
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/share/python/virtualenvwrapper.sh
 
-# SVN.
-export SVN_EDITOR=vim
-
 # Vi mode for bash.
 #set -o vi
+
+export EDITOR=mvim
+export VISUAL=mvim
 
 # Brew Autocompletes.
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
