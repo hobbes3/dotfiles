@@ -44,9 +44,6 @@ cnoremap %s/ %s/\v
 " Keep X lines when scrolling.
 set scrolloff=7
 
-" Don't wrap text, which you might need to scroll horizontally.
-set nowrap
-
 " Set visual bell
 set vb
 

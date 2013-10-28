@@ -1,6 +1,6 @@
 PS1='[\[\e[0;32m\]\u\[\e[m\]@\[\e[0;32m\]\h\[\e[m\]] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
 
-alias ls='ls -FphG'
+alias ls='ls -FphGT'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 
@@ -19,10 +19,10 @@ export PATH=$HOME/.rvm/bin:$PATH
 
 # For virtualenvwrapper (Python)
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/share/python/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh
 
 # Vi mode for bash.
-#set -o vi
+set -o vi
 
 export EDITOR=mvim
 export VISUAL=mvim

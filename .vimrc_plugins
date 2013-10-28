@@ -163,7 +163,7 @@
             endif
         else
             " If it's graphical Vim, then use the custom fonts to properly display Powerline status.
-            set guifont=Menlo\ for\ Powerline:h12
+            set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
         endif
 
     " Smarter autocomplete and autocomplete for built-in functions.
@@ -227,9 +227,6 @@ cnoremap %s/ %s/\v
 
 " Keep X lines when scrolling.
 set scrolloff=7
-
-" Don't wrap text, which you might need to scroll horizontally.
-set nowrap
 
 " Set visual bell
 set vb
