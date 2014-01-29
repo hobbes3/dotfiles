@@ -8,6 +8,7 @@ alias egrep='egrep --color=auto'
 alias qlf='qlmanage -p "$@" >& /dev/null'
 
 alias sshfs='sshfs -oauto_cache,reconnect'
+alias rsync='rsync --exclude-from=/Users/hobbes3/.rsyncignore'
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
@@ -31,3 +32,5 @@ export VISUAL=mvim
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
+
+alias sshfs_splunk='sshfs hobbes3@localhost:/opt/splunksh1/etc/apps/splunk_wftoolkit/django/splunk_wftoolkit/static/splunk_wftoolkit/components/ /opt/splunksh1/etc/apps/splunk_ps/appserver/static/components'
