@@ -8,7 +8,6 @@ alias egrep='egrep --color=auto'
 alias qlf='qlmanage -p "$@" >& /dev/null'
 
 alias sshfs='sshfs -oauto_cache,reconnect'
-alias rsync='rsync --exclude-from=/Users/hobbes3/.rsyncignore'
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
