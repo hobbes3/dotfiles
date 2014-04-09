@@ -10,17 +10,13 @@ alias qlf='qlmanage -p "$@" >& /dev/null'
 alias sshfs='sshfs -oauto_cache,reconnect'
 alias rsync='rsync --progress'
 
+alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
+
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
-export PATH=/usr/local/share/npm/bin:$PATH
-export PATH=$HOME/.rvm/bin:$PATH
 
 # Erase duplicates across whole history.
 #export HISTCONTROL=erasedups
-
-# For virtualenvwrapper (Python)
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
 
 # Vi mode for bash.
 set -o vi
@@ -28,9 +24,7 @@ set -o vi
 export EDITOR=mvim
 export VISUAL=mvim
 
-# Brew Autocompletes.
+# brew install bash-complete
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
-
-alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
