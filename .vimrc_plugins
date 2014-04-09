@@ -138,7 +138,7 @@
         let g:gundo_right = 1
 
     " A much more powerful match % command.
-    Bundle 'tsaleh/vim-matchit'
+    Bundle 'tmhedberg/matchit'
 
     " Source code browser plugin.
     Bundle 'vim-scripts/taglist.vim'
