@@ -37,9 +37,12 @@ endif
 set wildignore+=*/tmp/*
 
 " Set "very magic" on all regex searches.
-nnoremap   /   /\v
-cnoremap  s/  s/\v
-cnoremap %s/ %s/\v
+nnoremap / /\v
+vnoremap / /\v
+cnoremap %s/ %smagic/
+cnoremap \>s/ \>smagic/
+nnoremap :g/ :g/\v
+nnoremap :g// :g//
 
 " Keep X lines when scrolling.
 set scrolloff=7
@@ -82,9 +85,6 @@ set smartcase
 
 " Show menu with possible tab completions. Complete to longest match, then list possibilities.
 set wildmode=longest,list
-
-" Highligh the current line.
-set cursorline
 
 " Sets how many lines of history Vim has to remember.
 set history=1000

@@ -7,12 +7,12 @@
 
     " Required.
     filetype off
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-    Bundle 'gmarik/vundle'
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+    Plugin 'gmarik/Vundle.vim'
 
     " Fuzzy search filenames.
-    Bundle 'kien/ctrlp.vim'
+    Plugin 'kien/ctrlp.vim'
         " Remap the default <c-p>.
         let g:ctrlp_map = '<Leader>]'
         let g:ctrlp_max_height = 20
@@ -67,12 +67,12 @@
         \}
 
     " Show a better file explorer.
-    Bundle 'scrooloose/nerdtree'
+    Plugin 'scrooloose/nerdtree'
         map <Leader>[ :NERDTreeToggle<CR>
         let g:NERDTreeWinSize = 60
 
     " Xdebug.
-    Bundle 'joonty/vdebug.git'
+    Plugin 'joonty/vdebug.git'
         let g:vdebug_options = {
         \   'path_maps': {
         \       '/var/www/vhosts/ises.satoshi.neadwerx.com': '/Users/hobbes3/mounts/nead/var/www/vhosts/ises.satoshi.neadwerx.com',
@@ -103,34 +103,14 @@
         \}
 
     " Ack.
-    Bundle 'mileszs/ack.vim'
+    Plugin 'mileszs/ack.vim'
         nnoremap <leader>p :Ack<Space>
 
-    " Show and improves marks.
-    "Bundle 'kshenoy/vim-signature'
-        " m[a-zA-Z]    : Toggle mark
-        " m<Space>     : Delete all marks
-        " m,           : Place the next available mark
-        " ]`           : Jump to next mark
-        " [`           : Jump to prev mark
-        " ]'           : Jump to start of next line containing a mark
-        " ['           : Jump to start of prev line containing a mark
-        " `]           : Jump by alphabetical order to next mark
-        " `[           : Jump by alphabetical order to prev mark
-        " ']           : Jump by alphabetical order to start of next line containing a mark
-        " '[           : Jump by alphabetical order to start of prev line containing a mark
-        "
-        " m[0-9]       : Toggle the corresponding marker !@#$%^&*()
-        " m<S-[0-9]>   : Remove all markers of the same type
-        " ]-           : Jump to next line having same marker
-        " [-           : Jump to prev line having same marker
-        " m<BackSpace> : Remove all markers
-
     " All the color schemes you'll ever need.
-    Bundle 'flazz/vim-colorschemes'
+    Plugin 'flazz/vim-colorschemes'
 
     " View the undo-redo as an ASCII-view tree.
-    Bundle 'sjl/gundo.vim'
+    Plugin 'sjl/gundo.vim'
         nnoremap <Leader>= :GundoToggle<CR>
         let g:gundo_width = 80
         let g:gundo_preview_height = 40
@@ -138,14 +118,14 @@
         let g:gundo_right = 1
 
     " A much more powerful match % command.
-    Bundle 'tmhedberg/matchit'
+    Plugin 'tmhedberg/matchit'
 
     " Source code browser plugin.
-    Bundle 'vim-scripts/taglist.vim'
+    Plugin 'vim-scripts/taglist.vim'
         map <Leader>- :TlistToggle<CR>
 
     " An awesome status bar.
-    Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+    Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
         let g:Powerline_symbols = 'fancy'
 
         " Hide the default mode text (e.g. -- INSERT -- below the status line).
@@ -167,10 +147,10 @@
         endif
 
     " Smarter autocomplete and autocomplete for built-in functions.
-    Bundle 'Valloric/YouCompleteMe'
+    Plugin 'Valloric/YouCompleteMe'
 
     " Syntax and style checker for many languages.
-    Bundle 'scrooloose/syntastic'
+    Plugin 'scrooloose/syntastic'
         let g:syntastic_check_on_open=1
         let g:syntastic_enable_signs=1
         let g:syntastic_php_checkers=['php', 'phpmd']
@@ -178,10 +158,18 @@
         let g:syntastic_auto_jump=0
 
     " Align text based on characters.
-    Bundle 'godlygeek/tabular'
+    Plugin 'godlygeek/tabular'
 
-    " Required
-    filetype plugin indent on
+    " Syntax highlighting for Markdown
+    Plugin 'plasticboy/vim-markdown'
+    if has("autocmd")
+        au BufRead,BufNewFile *.md set filetype=markdown
+    endif
+
+    " All of your Plugins must be added before the following line
+    call vundle#end()            " required
+    filetype plugin indent on    " required
+
 """" End of Vundle """"
 
 
@@ -221,9 +209,12 @@ set tags=./tags;
 set wildignore+=*/tmp/*
 
 " Set "very magic" on all regex searches.
-nnoremap   /   /\v
-cnoremap  s/  s/\v
-cnoremap %s/ %s/\v
+nnoremap / /\v
+vnoremap / /\v
+cnoremap %s/ %smagic/
+cnoremap \>s/ \>smagic/
+nnoremap :g/ :g/\v
+nnoremap :g// :g//
 
 " Keep X lines when scrolling.
 set scrolloff=7
@@ -267,9 +258,6 @@ set smartcase
 " Show menu with possible tab completions. Complete to longest match, then list possibilities.
 set wildmode=longest,list
 
-" Highligh the current line.
-set cursorline
-
 " Sets how many lines of history Vim has to remember.
 set history=1000
 
@@ -290,3 +278,8 @@ set noswapfile
 
 " Case insensitive for all lowercase searches.
 set ignorecase smartcase
+
+if has("autocmd")
+    " Set 2 space tabs for md files (Markdown)
+    autocmd BufRead,BufNewFile *.md set tabstop=2|set shiftwidth=2
+endif
