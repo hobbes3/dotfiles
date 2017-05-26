@@ -12,19 +12,26 @@ alias rsync='rsync --progress'
 
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/sbin:/usr/local/bin:$PATH
+
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+eval "$(pyenv init -)"
+
+# Splunk SDK
+export PYTHONPATH=/opt/splunk/etc/apps/framework/contrib/splunk-sdk-python
 
 # Erase duplicates across whole history.
 #export HISTCONTROL=erasedups
 
-# Vi mode for bash.
-set -o vi
-
-export EDITOR=mvim
-export VISUAL=mvim
+export EDITOR=nvim
+export VISUAL=nvim
 
 # brew install bash-complete
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
