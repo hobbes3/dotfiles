@@ -1,5 +1,22 @@
-" Satoshi's .vimrc "
-""""""""""""""""""""
+" Satoshi's init.vim for NeoVim "
+"""""""""""""""""""""""""""""""""
+
+""" vim-plug
+    call plug#begin('~/.local/share/nvim/plugged')
+
+    " All the color schemes you'll ever need.
+    Plug 'flazz/vim-colorschemes'
+
+    " An awesome status bar.
+    Plug 'vim-airline/vim-airline'
+        let g:airline_powerline_fonts = 1
+
+    " Fuzzy search.
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+        nnoremap <Leader>] :FZF<CR>
+
+    " Initialize plugin system.
+    call plug#end()
 
 " Show syntax coloring if it can.
 if has("syntax")
@@ -27,9 +44,8 @@ if has("autocmd")
 endif
 
 " Set a dark background for solarized color scheme.
-"set background=dark
-"colorscheme solarized
-
+set background=dark
+colorscheme solarized
 
 " Files to ignore. Useful during tab-completion of files.
 set wildignore+=*/tmp/*
